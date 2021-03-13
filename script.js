@@ -7,28 +7,53 @@ var pokemonRepository = (function () {
     { name: 'Jigglypuff', type: ['fairy', 'normal'], height: 2 },
 ];
 
-// Function add pokemon
-function add(pokemon){
+  // Function add pokemon
+  function add(pokemon)  {
     pokemonList.push(pokemon);
   }
 
-// Function to retrieve data of the pokemonList
+  // Function to retrieve data of the pokemonList
   function getAll() {
     return pokemonList;
   }
 
-// Using the same name for keys and values
+  // Function to collect data
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
+
+  // Function to create a list of all pokemon
+  function addListItem(pokemon) {
+    let pokemonList = document.querySelector('.pokemon-list');// Reference to class from index.html
+    let listpokemon = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('button-class');
+    button.addEventListener('click', function showDetails(pokemon) {
+      console.log(pokemon);}
+    );
+    listpokemon.appendChild(button); // otherwise there would be no bullet points
+    pokemonList.appendChild(listpokemon); // without this there would be no content!
+  }
+
+  // Saving the output values of the functions 
   return {
     add: add,
     getAll: getAll,
+    addListItem: addListItem,
   };
 })();
 
-// Call the function
+  // Function Calls
 console.log(pokemonRepository.getAll()); // []
 pokemonRepository.add({ name: 'Pikachu' });
-console.log(pokemonRepository.getAll()); // [ { name: 'Pikachu' } ]
+console.log(pokemonRepository.getAll());
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
+});
 
+
+// Overview of refactored Code
 
 /* Original for each loop
 pokemonList.forEach(function (pokemon) {if (pokemon.height > 1) {
@@ -38,7 +63,9 @@ pokemonList.forEach(function (pokemon) {if (pokemon.height > 1) {
       + '<br> </br>');}
 */
 
-// Using the foreach Method to iterate over the pokemonList to decide which pokemon is big oder normal.
+
+/*
+/ Using the foreach Method to iterate over the pokemonList to decide which pokemon is big oder normal.
 pokemonRepository.getAll//using the getAll function to retrieve data
 ().forEach(function (pokemon) {if (pokemon.height > 1) {
       document.write('Name:' + pokemon.name + '- Height' + pokemon.height + 'm ---> That is huge '
@@ -46,7 +73,7 @@ pokemonRepository.getAll//using the getAll function to retrieve data
       document.write('Name:' + pokemon.name + '- Height' + pokemon.height + 'm ---> That is normal '
       + '<br> </br>');}
 });
-
+*/
 
 
 /* Normal for each method out of the IIFE scope! --> Task 1
