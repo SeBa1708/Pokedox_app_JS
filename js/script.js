@@ -1,13 +1,4 @@
 // IIFE Structure
-var pokemonRepository = (function () {
-  var pokemonList = [
-    { name: 'balbasure', type: ['grass', 'poisson'], height: 0.7 },
-    { name: 'pikachu', type: 'electric', height: 0.4 },
-    { name: 'Jigglypuff', type: ['fairy', 'normal'], height: 2 },
-];
-  // Function add pokemon
-  function add(pokemon)  {
-    pokemonList.push(pokemon);
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
@@ -27,10 +18,6 @@ let pokemonRepository = (function () {
   // Function to retrieve data of the pokemonList
   function getAll() {
     return pokemonList;
-  }
-  // Function to collect data
-  function showDetails(pokemon) {
-    console.log(pokemon);
   }
 
   // Function to create a list of all pokemon and manupulating the DOM
