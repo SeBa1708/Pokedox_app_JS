@@ -28,7 +28,7 @@ let pokemonRepository = (function () {
     let button = document.createElement('button');
     button.innerText = pokemon.name;
     button.classList.add('button-class');
-    button.addEventListener('click', function () {showDetails(pokemon);
+    button.addEventListener('click', function () {showDetails(pokemon); // without this eventListener the pokemon would not be shown.
     });
 
     listpokemon.appendChild(button); // If I don´t append the button to the listpokemon there would be no pokemons.
@@ -72,6 +72,7 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
+      modalContainer.innerHTML = '';
       let modal = document.createElement('div');
       modal.classList.add('modal');
 
