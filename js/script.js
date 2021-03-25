@@ -2,6 +2,7 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let modalContainer = document.querySelector('#modal-container');
 
   // Function add pokemon if it is an object and has a name
   function add(pokemon) {
@@ -29,7 +30,8 @@ let pokemonRepository = (function () {
     button.classList.add('button-class');
     button.addEventListener('click', function () {showDetails(pokemon);
     });
-    listpokemon.appendChild(button); // otherwise there would be no bullet points
+
+    listpokemon.appendChild(button); // If I don´t append the button to the listpokemon there would be no pokemons.
     pokemonList.appendChild(listpokemon); // without this there would be no content!
   }
 
@@ -61,17 +63,73 @@ let pokemonRepository = (function () {
       // Declaration of new variables (item parameter of loadDetails function )
       item.imageUrl = details.sprites.front_default; // sprites.front_default cames from API
       item.height = details.height; // height cames from API
+      item.weight = details.weight;
       item.types = details.types; // types cames from API, in the console.log it's an array
     }).catch(function (e) {
       console.log(e);
     });
   }
 
-  function showDetails (item)  {
-    pokemonRepository.loadDetails(item).then(function () {
-      console.log(item);
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
+      let modal = document.createElement('div');
+      modal.classList.add('modal');
+
+      let closeButton = document.createElement('button');
+      closeButton.classList.add('modal-close');
+      closeButton.innerText = 'X';
+      // close the button by pressing the x
+      closeButton.addEventListener('click', function(){
+      hideModal();
+      });
+
+      // Each variable has to match with a  name of the API Endpoints!
+      let pokemonPicture = document.createElement('img');
+      pokemonPicture.src = pokemon.imageUrl;
+
+      let pokemonName = document.createElement('h2');
+      pokemonName.classList.add('modal-title');
+      pokemonName.innerText = pokemon.name;
+
+      let pokemonHeight = document.createElement('p');
+      pokemonHeight.classList.add('modal-content');
+      pokemonHeight.innerText = 'Height: ' + pokemon.height/10 + 'm';
+
+      let pokemonWeight = document.createElement('p');
+      pokemonWeight.classList.add('modal-content');
+      pokemonWeight.innerText = 'Height: ' + pokemon.weight/10 + 'kg';
+
+
+      // This order determines the order of the Modal!
+      modal.appendChild(closeButton);
+      modal.appendChild(pokemonPicture);
+      modal.appendChild(pokemonName);
+      modal.appendChild(pokemonHeight);
+      modal.appendChild(pokemonWeight);
+      modalContainer.appendChild(modal);
+
+      modalContainer.classList.add('is-visible');
     });
   }
+  // Function to close the modal by pressing esc
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  });
+
+  // Close the modal by making a click outside of the modal
+  modalContainer.addEventListener('click', function (e) {
+    let target = e.target;
+    if (target = modalContainer) {
+      hideModal();
+    }
+  });
+
+  // Without this function there would be no content!
+    function hideModal() {
+      modalContainer.classList.remove('is-visible');
+    };
 
 
   // Saving the output values of the functions ! Take care of the order loadlist before addListItem
@@ -81,7 +139,7 @@ let pokemonRepository = (function () {
     loadList: loadList,
     addListItem: addListItem,
     loadDetails: loadDetails,
-
+    hideModal: hideModal,
   };
 })();
 
