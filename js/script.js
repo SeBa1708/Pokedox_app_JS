@@ -126,6 +126,12 @@ let pokemonRepository = (function () {
     }
   });
 
+  // Without this function there would be no content!
+    function hideModal() {
+      modalContainer.classList.remove('is-visible');
+    };
+
+
   // Saving the output values of the functions ! Take care of the order loadlist before addListItem
   return {
     add: add,
@@ -136,11 +142,6 @@ let pokemonRepository = (function () {
     hideModal: hideModal,
   };
 })();
-
-// Without this function we could not remove the modal
-  function hideModal() {
-    modalContainer.classList.remove('is-visible');
-  };
 
 // Function Calls with Callback Functions (Function in a Function)
 
