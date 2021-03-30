@@ -1,163 +1,19 @@
-:root {
-  --background__color: #c0c0c0;
-  --headline-color__h1: #ff0000;
-  --headline-color__h2: #000000;
-  --buttonbackground__color: #008000;
-  --background_color_workgrid__Contactme: #d3d3d3;
-  --color_normal__button: #fff;
-}
-
-/* Font Variables */
-:root {
-  --font-size__normal: 16px;
-  --font-size__h1: 28px;
-  --font-size__h2: 22px;
-  --font-weight__normal: 400;
-  --font-weight__headlines: 700;
-}
-
-/* a Styling */
-
-:root {
-  --a__normal: #00f;
-  --a__visited: #800080;
-  --a__active: #ff0;
-}
-
-/* button */
-
-:root {
-  --button__normal: #008000;
-  --button__no: #ff0;
-  --button__visited: #800080;
-  --button__active: #ff0;
-}
-
-
 body {
-  background-color: var(--background__color);
-  font-weight: var(--font-weight__normal);
-  font-family: 'Roboto', sans-serif;
-  font-size: var(--font-size__normal);
-
-  /* Sets the font size to 16px */
-  line-height: 1.6;
-
-  /* Sets the line-height to 1.6 */
+  text-align: center;
 }
-
-/* 20px = Position to the edge */
-.page-header {
-  display: flex;
-  max-width: 100%;
-  padding: 20px;
-}
-
-/* grow yes, shrink no, max 200px per Box */
-.page-header__item {
-  flex: 0 1 200px;
-}
-
-/* Postion Home etc.in relation to img */
-.page-header__item:last-child {
-  flex-grow: 1;
-  text-align: right;
-}
-
-/* no dots */
-.navigation-list {
-  list-style-type: none;
-}
-
-/* 15px Space between Elements */
-.navigation-list li {
-  display: inline-block;
-  margin-left: 15px;
-}
-
-.logo {
-  max-width: 80px;
-  max-height: 50px;
-}
-
-#content-wrap {
-    padding-bottom: 100px;    /* Footer height */
-  }
-
-  .page-footer {
-    clear: both;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-  }
 
 h1 {
-  font-size: 32px;
   text-align: center;
 }
 
-.pokemon-list {
-  list-style: none;
+li.list-group-item {
+  background-color: #fff68f; 
+}
+
+p {
   text-align: center;
 }
 
-.button-class {
-  font-family: 'Press Start 2P', monospace;
-  border: none;
-  padding: 16px 32px;
-  margin: 10px 0px;
-  background-color: white;
-  color: black;
+h2 { 
   text-align: center;
-  border: 2px solid black;
-}
-
-#modal-container {
-  display: none;
-}
-
-#modal-container.is-visible {
-  display: block;
-  padding: 20px;
-  height: 100%;
-  width: 100%;
-  background: rgba(255,0,0,0.2);
-  position: fixed;
-  top:0;
-  left:0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-
-.modal {
-  margin: auto;
-  display: inline-block;
-  background: #fff;
-  padding: 15px;
-  width: 500px;
-  max-width: 600px;
-  text-align: center;
-  border-radius: 20px;
-}
-
-.modal-close {
-  float: right;
-  border: 0;
-  background: none;
-  color: #777;
-  text-decoration: none;
-}
-
-.modal h2 {
-  margin-top: 0;
-  clear: both;
-}
-
-.modal p {
-  margin-bottom: 0;
 }
