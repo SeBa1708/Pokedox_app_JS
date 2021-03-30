@@ -1,6 +1,6 @@
 // IIFE Structure
 let pokemonRepository = (function () {
-  let pokemonList = [];
+  let pokemonList= [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   let modalContainer = document.querySelector('#modal-container');
 
@@ -24,11 +24,12 @@ let pokemonRepository = (function () {
   // Function to create a list of all pokemon and manupulating the DOM
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.pokemon-list');// Reference to class from index.html
-    let listpokemon = document.createElement('li');
+    let listpokemon = document.createElement('li'); 
     let button = document.createElement('button');
     button.innerText = pokemon.name;
-    button.classList.add('button-class');
-    button.addEventListener('click', function () {showDetails(pokemon); // without this eventListener the pokemon would not be shown.
+    button.classList.add('group-list-item'); 
+    button.classList.add('btn-secondary'); 
+    button.addEventListener('click', function () {showDetails(pokemon);
     });
 
     listpokemon.appendChild(button); // If I don´t append the button to the listpokemon there would be no pokemons.
@@ -72,12 +73,11 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      modalContainer.innerHTML = '';
       let modal = document.createElement('div');
-      modal.classList.add('modal');
+      modal.classList.add('modal'); // modal is defined in css.
 
       let closeButton = document.createElement('button');
-      closeButton.classList.add('modal-close');
+      closeButton.classList.add('modal-close'); // modal-close is defined in css!
       closeButton.innerText = 'X';
       // close the button by pressing the x
       closeButton.addEventListener('click', function(){
@@ -89,7 +89,7 @@ let pokemonRepository = (function () {
       pokemonPicture.src = pokemon.imageUrl;
 
       let pokemonName = document.createElement('h2');
-      pokemonName.classList.add('modal-title');
+      pokemonName.classList.add('modal-title'); // is not needed for code execution.
       pokemonName.innerText = pokemon.name;
 
       let pokemonHeight = document.createElement('p');
